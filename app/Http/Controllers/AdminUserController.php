@@ -28,7 +28,7 @@ class AdminUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return "chegamos até aqui";
     }
 
     /**
