@@ -5,28 +5,23 @@ namespace App\Services;
 use App\Models\AdminUser;
 use App\Models\Seller;
 use App\Models\Sale;
-use App\Http\Requests\StoreSellerRequest;
+use App\Repositories\SellerRepository;
 
 use Illuminate\Support\Facades\Auth;
 
 class UserAdminService{
-    protected $Seller;
 
-    public function __construct(Seller $seller){
-        $this->seller = $seller;
+    public function __construct(SellerRepository $sellerRepository){
+        $this->sellerRepository = $sellerRepository;
     }
 
 
-    public function createSeller(StoreSellerRequest $request)
+    public function createSeller(Array $request)
     {
         if(/*Auth::AdminUser()->isAdmin()*/true){
-
-            $seller = $this->seller->create([
-            'name' => $request->get('name'),
-            'email' => $request->get('email'),
-            'comission' => $request->get('comission')]);
-
-            return $seller;
+            $seller = $this->sellerRepository->createModel($request);
+    
         }
+        return $seller;
     }
 }

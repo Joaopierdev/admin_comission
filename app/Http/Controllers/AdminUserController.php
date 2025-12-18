@@ -38,8 +38,8 @@ class AdminUserController extends Controller
      */
     public function store(StoreSellerRequest $request)
     {
-        $request->validate($request->rules(), $request->feedback());
-        $seller = $this->userAdminService->createSeller($request);
+        $requestValidated = $request->validated();
+        $seller = $this->userAdminService->createSeller($requestValidated);
 
         return response()->json($seller, 201);
     }
