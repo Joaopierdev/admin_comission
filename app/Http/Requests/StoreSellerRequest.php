@@ -27,7 +27,7 @@ class StoreSellerRequest extends FormRequest
         ];
     }
 
-    public function feedback(){
+    public function messages(){
         return [
             'required' => 'O campo :attribute está inválido ou deve ser preenchido',
             'email.unique' => 'Este e-mail já foi registrado em outro vendedor'
