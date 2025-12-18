@@ -7,12 +7,31 @@ use App\Models\Seller;
 use App\Models\Sale;
 use App\Repositories\SellerRepository;
 
+
 use Illuminate\Support\Facades\Auth;
 
 class UserAdminService{
 
     public function __construct(SellerRepository $sellerRepository){
         $this->sellerRepository = $sellerRepository;
+    }
+
+    public function login(Array $request)
+    {
+        $token = auth('api')->attempt($request);
+        if($token)
+        {
+            return $token;
+        }
+
+        return false;
+    }
+
+    public function getAdminUsers()
+    {
+        $users = AdminUser::get();
+
+        return $users;
     }
 
 

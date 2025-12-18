@@ -22,9 +22,11 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $users = $this->userAdminService->getAdminUsers();
 
+        return $users;
+    }
+    
     /**
      * Show the form for creating a new resource.
      */
