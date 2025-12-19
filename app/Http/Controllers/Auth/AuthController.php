@@ -5,21 +5,20 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
-use App\Services\UserAdminService;
+use App\Services\AuthService;
 
 class AuthController extends Controller
 {
-    protected $userAdminService;
-    public function __construct(UserAdminService $userAdminService)
+    protected $authService;
+    public function __construct(AuthService $authService)
     {
-        $this->userAdminService = $userAdminService;
+        $this->authService = $authService;
     }
 
     public function login(LoginRequest $request)
     {
-        $data = $request->all(['email', 'password']);
         
-        $token = $this->userAdminService->login($data);
+        $token = $this->authService->login($request);
         
         if(!$token)
         {
@@ -31,17 +30,23 @@ class AuthController extends Controller
 
     public function logout()
     {
-        return "logout";
+        $this->authService->logoutUser();
+
+        return response()->json(['message' => 'Logout Realizado com sucesso'], 200);
     }
 
     public function refresh()
     {
-        return "refresh";
+        $refreshedToken = $this->authService->refreshToken();
+
+        return response()->json(['token'=> $refreshedToken]);
     }
 
     public function me()
     {
-        return "me";
+        $user = $this->authService->getUserAuthenticated();
+
+        return response()->json(['data' => $user]);
     }
 
 }

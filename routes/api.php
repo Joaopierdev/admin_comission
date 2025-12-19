@@ -13,15 +13,13 @@ use App\Http\Controllers\Auth\AuthController;
 // })->middleware('auth:sanctum');
 
 Route::prefix('v1')->middleware('auth:api')->group(function() {
+    Route::post('me', [AuthController::class, 'me']);
+    Route::post('refresh', [AuthController::class, 'refresh']);
+    Route::post('logout', [AuthController::class, 'logout']);
     Route::apiResource('admin', AdminUserController::class);
     Route::apiResource('seller', SellerController::class);
     Route::apiResource('sale', SaleController::class);
 });
 
 
-
-
 Route::post('login', [AuthController::class, 'login']);
-Route::post('logout', [AuthController::class, 'logout']);
-Route::post('refresh', [AuthController::class, 'refresh']);
-Route::post('me', [AuthController::class, 'me']);

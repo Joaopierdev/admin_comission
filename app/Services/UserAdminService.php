@@ -16,17 +16,6 @@ class UserAdminService{
         $this->sellerRepository = $sellerRepository;
     }
 
-    public function login(Array $request)
-    {
-        $token = auth('api')->attempt($request);
-        if($token)
-        {
-            return $token;
-        }
-
-        return false;
-    }
-
     public function getAdminUsers()
     {
         $users = AdminUser::get();
