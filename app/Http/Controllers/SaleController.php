@@ -4,15 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Sale;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreSaleRequest;
+use App\Services\SaleService;
 
 class SaleController extends Controller
 {
+    public function __construct(SaleService $saleService)
+    {
+        $this->saleService = $saleService;
+    }
+
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $sales = $this->saleService->getSales();
+
+        return $sales;
     }
 
     /**
@@ -26,9 +36,13 @@ class SaleController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreSaleRequest $request)
     {
-        //
+        $validatedRequest = $request->validated();
+        $sale = $this->saleService->createSale($validatedRequest);
+
+        return response()->json(['sale'=> $sale]);
+        
     }
 
     /**

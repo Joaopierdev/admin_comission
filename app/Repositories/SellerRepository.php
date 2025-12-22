@@ -7,17 +7,13 @@ use App\Models\Seller;
 
 class SellerRepository
 {
-    public function __construct(Seller $model){
-        $this->model = $model;
+    public function __construct(Seller $seller){
+        $this->seller = $seller;
     }
 
-    public function createModel(Array $model){
-        $seller = Seller::create([
-        'name' => $model['name'],
-        'email' => $model['email'],
-        'comission' => $model['comission']
-        ]);
-
+    public function createModel(Seller $seller){
+        $seller->save();
+        
         return $seller;
     }
 }

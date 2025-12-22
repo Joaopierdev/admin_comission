@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AdminUser;
 use Illuminate\Http\Request;
 use App\Services\UserAdminService;
-use App\Http\Requests\StoreSellerRequest;
+use App\Http\Requests\StoreAdminRequest;
 
 
 
@@ -38,12 +38,12 @@ class AdminUserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreSellerRequest $request)
+    public function store(StoreAdminRequest $request)
     {
         $requestValidated = $request->validated();
-        $seller = $this->userAdminService->createSeller($requestValidated);
+        $admin = $this->userAdminService->createAdminUser($requestValidated);
 
-        return response()->json($seller, 201);
+        return response()->json($admin, 201);
     }
 
     /**
