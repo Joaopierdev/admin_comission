@@ -23,8 +23,7 @@ class StoreSaleRequest extends FormRequest
     {
         return [
             'seller_id'=> 'required|exists:sellers,id',
-            'sale_date'=> 'required|date',
-            'sale_price' => 'required|decimal:2'
+            'sale_price' => 'required|numeric|min:0'
         ];
     }
 
@@ -32,7 +31,6 @@ class StoreSaleRequest extends FormRequest
         return [
             'required' => 'O campo :attribute está inválido ou deve ser preenchido',
             'seller.exists' => 'É necessário que o vendedor já esteja cadastrado',
-            'sale_date.date' => 'É necessário que a data seja válida',
             'sale_price.decimal' => 'Insira um valor com no máximo duas casas decimais'
         ];
     }

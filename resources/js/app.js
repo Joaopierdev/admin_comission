@@ -24,9 +24,20 @@ app.component('home-component', home);
 import pedidos from './components/Pedidos.vue';
 app.component('pedidos-component', pedidos);
 
+import inputContainer from './components/InputContainer.vue';
+app.component('input-component', inputContainer);
+
 import vendedores from './components/Vendedores.vue';
 app.component('vendedores-component', vendedores);
 
+import table from './components/Table.vue';
+app.component('table-component', table);
+
+import card from './components/Card.vue';
+app.component('card-component', card);
+
+import modal from './components/Modal.vue';
+app.component('modal-component', modal);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

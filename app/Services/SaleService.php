@@ -26,7 +26,7 @@ class SaleService{
         $sale = new Sale([
             'seller_id' => $request['seller_id'],
             'sale_price' => $salePrice,
-            'sale_date'=> $request['sale_date'],
+            'sale_date'=> now()->format('Y-m-d'),
             'porcentage_comission' => $sellerCommission,
             'value_comission' => $valueComission
         ]);
